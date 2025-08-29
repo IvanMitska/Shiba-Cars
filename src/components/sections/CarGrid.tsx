@@ -1,7 +1,6 @@
 import React from 'react';
 import { CarCard } from '../ui/CarCard';
 import type { Car } from '../../types/index';
-import { motion } from 'framer-motion';
 
 interface CarGridProps {
   cars: Car[];

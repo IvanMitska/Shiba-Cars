@@ -10,7 +10,6 @@ import {
   User, 
   Phone, 
   Mail, 
-  CreditCard,
   Check,
   ChevronRight,
   ChevronLeft,
@@ -75,7 +74,6 @@ export const BookingForm: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm<CustomerFormData>({
     resolver: zodResolver(customerSchema),
   });

@@ -117,7 +117,7 @@ export const TermsService: React.FC = () => {
           </h3>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {paymentOptions.map((option, index) => (
+            {paymentOptions.map((option) => (
               <div
                 key={option.currency}
                 className="bg-gray-700 rounded-lg p-4 text-center"

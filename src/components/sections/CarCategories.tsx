@@ -63,7 +63,7 @@ const categories: Category[] = [
 
 
 interface CarCategoriesProps {
-  onCategoryClick?: (category: string) => void;
+  onCategoryClick?: (category: string | null) => void;
   selectedCategory?: string | null;
   showTitle?: boolean;
 }

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Search, X } from 'lucide-react';
-import { Button } from '../ui/Button';
+import { Search } from 'lucide-react';
 
 interface Filters {
   category: string;

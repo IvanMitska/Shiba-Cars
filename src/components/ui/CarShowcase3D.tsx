@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Environment, useGLTF } from '@react-three/drei'
-import { Suspense, useRef, useEffect } from 'react'
+import { Suspense, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Group } from 'three'
 import { useFrame } from '@react-three/fiber'

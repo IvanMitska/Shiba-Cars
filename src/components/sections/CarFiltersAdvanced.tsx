@@ -81,7 +81,6 @@ export const CarFiltersAdvanced: React.FC<CarFiltersAdvancedProps> = ({ filters,
     });
   };
 
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
 
   return (
     <div className="bg-black/95 backdrop-blur-xl rounded-2xl border border-orange-500/20 overflow-hidden shadow-2xl shadow-orange-500/10">

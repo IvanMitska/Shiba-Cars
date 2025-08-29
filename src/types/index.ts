@@ -16,6 +16,7 @@ export interface Car {
   rating: number;
   reviews: number;
   description: string;
+  discount?: boolean;
   specifications: {
     engine: string;
     power: string;
@@ -46,6 +47,7 @@ export interface AdditionalService {
 }
 
 export interface Customer {
+  id?: string;
   firstName: string;
   lastName: string;
   email: string;

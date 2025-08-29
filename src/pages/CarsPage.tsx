@@ -4,7 +4,6 @@ import { CarCategories } from '../components/sections/CarCategories';
 import { CarFiltersAdvanced } from '../components/sections/CarFiltersAdvanced';
 import { CarGrid } from '../components/sections/CarGrid';
 import { cars } from '../data/cars';
-import type { Car } from '../types/index';
 import { SlidersHorizontal } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
