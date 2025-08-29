@@ -137,7 +137,12 @@ export const BookingForm: React.FC = () => {
   const onSubmit = (data: CustomerFormData) => {
     setCustomer({
       id: Date.now().toString(),
-      ...data,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      phone: data.phone,
+      dateOfBirth: data.birthDate,
+      driverLicense: data.licenseNumber,
     });
     
     alert('Бронирование успешно оформлено! Мы свяжемся с вами в ближайшее время.');
