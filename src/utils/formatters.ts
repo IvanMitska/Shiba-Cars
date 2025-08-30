@@ -1,7 +1,7 @@
 export const formatPrice = (price: number): string => {
-  return new Intl.NumberFormat('ru-RU', {
+  return new Intl.NumberFormat('th-TH', {
     style: 'currency',
-    currency: 'RUB',
+    currency: 'THB',
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(price);

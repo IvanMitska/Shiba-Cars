@@ -1,13 +1,13 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { CarCategories } from '../components/sections/CarCategories';
-import { CarFiltersAdvanced } from '../components/sections/CarFiltersAdvanced';
-import { CarGrid } from '../components/sections/CarGrid';
-import { cars } from '../data/cars';
-import { SlidersHorizontal } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { SlidersHorizontal } from 'lucide-react';
+import { motorcycles } from '../data/motorcycles';
+import { MotorcycleCategories } from '../components/sections/MotorcycleCategories';
+import { MotorcycleFiltersAdvanced } from '../components/sections/MotorcycleFiltersAdvanced';
+import { MotorcycleGrid } from '../components/sections/MotorcycleGrid';
 
-export const CarsPage: React.FC = () => {
+export const MotorcyclesPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const categoryFromUrl = searchParams.get('category');
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
@@ -15,14 +15,13 @@ export const CarsPage: React.FC = () => {
   const [filters, setFilters] = useState({
     category: categoryFromUrl || '',
     priceMin: 0,
-    priceMax: 20000,
+    priceMax: 2000,
     transmission: '',
     fuel: '',
     searchQuery: '',
     sortBy: 'price-asc',
     brand: '',
-    year: { min: 2015, max: 2024 },
-    seats: 0,
+    engineSize: '',
   });
 
   useEffect(() => {
@@ -31,7 +30,6 @@ export const CarsPage: React.FC = () => {
     }
   }, [categoryFromUrl]);
 
-  // Prevent body scroll when mobile filter is open
   useEffect(() => {
     if (isMobileFilterOpen) {
       document.body.style.overflow = 'hidden';
@@ -53,31 +51,35 @@ export const CarsPage: React.FC = () => {
     }
   };
 
-  const filteredCars = useMemo(() => {
-    let result = [...cars];
+  const filteredMotorcycles = useMemo(() => {
+    let result = [...motorcycles];
 
     if (filters.category) {
-      result = result.filter(car => car.category === filters.category);
+      result = result.filter(motorcycle => motorcycle.category === filters.category);
     }
 
     if (filters.transmission) {
-      result = result.filter(car => car.transmission === filters.transmission);
+      result = result.filter(motorcycle => motorcycle.transmission === filters.transmission);
     }
 
     if (filters.fuel) {
-      result = result.filter(car => car.fuel === filters.fuel);
+      result = result.filter(motorcycle => motorcycle.fuel === filters.fuel);
+    }
+
+    if (filters.brand) {
+      result = result.filter(motorcycle => motorcycle.brand.toLowerCase() === filters.brand.toLowerCase());
     }
 
     if (filters.searchQuery) {
       const query = filters.searchQuery.toLowerCase();
-      result = result.filter(car =>
-        car.brand.toLowerCase().includes(query) ||
-        car.model.toLowerCase().includes(query)
+      result = result.filter(motorcycle =>
+        motorcycle.brand.toLowerCase().includes(query) ||
+        motorcycle.model.toLowerCase().includes(query)
       );
     }
 
-    result = result.filter(car =>
-      car.pricePerDay >= filters.priceMin && car.pricePerDay <= filters.priceMax
+    result = result.filter(motorcycle =>
+      motorcycle.pricePerDay >= filters.priceMin && motorcycle.pricePerDay <= filters.priceMax
     );
 
     switch (filters.sortBy) {
@@ -100,7 +102,7 @@ export const CarsPage: React.FC = () => {
 
   return (
     <div className="bg-black min-h-screen">
-      <CarCategories 
+      <MotorcycleCategories 
         selectedCategory={filters.category || null}
         onCategoryClick={handleCategoryClick}
         showTitle={false}
@@ -131,22 +133,20 @@ export const CarsPage: React.FC = () => {
             <>
               <span className="text-gray-400">Категория: </span>
               <span className="bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent">
-                {filters.category === 'suv' ? 'Внедорожники и кроссоверы' :
-                 filters.category === 'premium' ? 'Премиум' :
-                 filters.category === 'business' ? 'Бизнес' :
-                 filters.category === 'sport' ? 'Спорткары' :
-                 filters.category === 'comfort' ? 'Эконом' :
-                 filters.category === 'electric' ? 'Электромобили' :
-                 filters.category === 'economy' ? 'Эконом' : filters.category}
+                {filters.category === 'scooter' ? 'Скутеры' :
+                 filters.category === 'sport' ? 'Спортбайки' :
+                 filters.category === 'touring' ? 'Туринги' :
+                 filters.category === 'cruiser' ? 'Круизеры' :
+                 filters.category === 'adventure' ? 'Адвенчер' : filters.category}
               </span>
             </>
-          ) : 'Все автомобили'}
+          ) : 'Все мотоциклы'}
         </h1>
         
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
           {/* Desktop Filters */}
           <div className="hidden lg:block lg:col-span-1">
-            <CarFiltersAdvanced filters={filters} setFilters={setFilters} />
+            <MotorcycleFiltersAdvanced filters={filters} setFilters={setFilters} />
           </div>
 
           {/* Mobile Filters Modal */}
@@ -167,7 +167,7 @@ export const CarsPage: React.FC = () => {
                   className="absolute left-0 top-0 h-full w-[85%] max-w-sm overflow-y-auto"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <CarFiltersAdvanced 
+                  <MotorcycleFiltersAdvanced 
                     filters={filters} 
                     setFilters={setFilters}
                     onClose={() => setIsMobileFilterOpen(false)}
@@ -180,7 +180,7 @@ export const CarsPage: React.FC = () => {
           <div className="lg:col-span-3">
             <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <p className="text-gray-400">
-                Найдено: <span className="font-semibold text-white">{filteredCars.length}</span> автомобилей
+                Найдено: <span className="font-semibold text-white">{filteredMotorcycles.length}</span> мотоциклов
               </p>
               
               <select
@@ -195,7 +195,7 @@ export const CarsPage: React.FC = () => {
               </select>
             </div>
             
-            <CarGrid cars={filteredCars} />
+            <MotorcycleGrid motorcycles={filteredMotorcycles} />
           </div>
         </div>
       </div>

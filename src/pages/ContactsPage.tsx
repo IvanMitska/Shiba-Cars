@@ -18,7 +18,7 @@ export const ContactsPage: React.FC = () => {
                 <Phone className="w-5 h-5 text-primary-500 mt-1" />
                 <div>
                   <p className="font-semibold">Телефон</p>
-                  <p className="text-gray-600">+7 (495) 123-45-67</p>
+                  <p className="text-gray-600">+66 95-965-7805</p>
                   <p className="text-sm text-gray-500">Круглосуточная поддержка</p>
                 </div>
               </div>
@@ -27,8 +27,8 @@ export const ContactsPage: React.FC = () => {
                 <Mail className="w-5 h-5 text-primary-500 mt-1" />
                 <div>
                   <p className="font-semibold">Email</p>
-                  <a href="mailto:info@shibacars.ru" className="text-gray-600 hover:text-primary-500">
-                    info@shibacars.ru
+                  <a href="mailto:shibacars@gmail.com" className="text-gray-600 hover:text-primary-500">
+                    shibacars@gmail.com
                   </a>
                 </div>
               </div>
@@ -37,7 +37,7 @@ export const ContactsPage: React.FC = () => {
                 <MapPin className="w-5 h-5 text-primary-500 mt-1" />
                 <div>
                   <p className="font-semibold">Главный офис</p>
-                  <p className="text-gray-600">Москва, ул. Тверская, 15</p>
+                  <p className="text-gray-600">24/31 Wichit, Mueang District, Phuket 83000, Thailand</p>
                 </div>
               </div>
               

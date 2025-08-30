@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Calendar, MapPin, Search, Star, Shield, Clock, Award } from 'lucide-react';
+import { Search, Star, Shield, Clock, Award } from 'lucide-react';
 import { Button } from '../ui/Button';
+import { CustomDatePicker } from '../ui/CustomDatePicker';
+import { CustomLocationSelector } from '../ui/CustomLocationSelector';
+import { locations } from '../../data/locations';
 import { format, addDays } from 'date-fns';
 import { motion } from 'framer-motion';
 
@@ -9,6 +12,7 @@ export const HeroSection: React.FC = () => {
   const navigate = useNavigate();
   const [startDate, setStartDate] = useState(format(new Date(), 'yyyy-MM-dd'));
   const [endDate, setEndDate] = useState(format(addDays(new Date(), 3), 'yyyy-MM-dd'));
+  const [pickupLocation, setPickupLocation] = useState('Аэропорт Пхукета');
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -101,55 +105,26 @@ export const HeroSection: React.FC = () => {
         >
           <form onSubmit={handleSearch} className="bg-black/40 backdrop-blur-xl rounded-3xl p-6 lg:p-8 border border-white/10 shadow-2xl shadow-black/50">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <label className="block text-sm font-medium text-gray-400 mb-3">
-                  <Calendar className="inline w-4 h-4 mr-2 text-orange-400" />
-                  Дата начала
-                </label>
-                <input
-                  type="date"
-                  value={startDate}
-                  onChange={(e) => setStartDate(e.target.value)}
-                  className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-white transition-all duration-300 placeholder-gray-500"
-                />
-              </motion.div>
+              <CustomDatePicker
+                value={startDate}
+                onChange={setStartDate}
+                label="Дата начала"
+                minDate={new Date()}
+              />
 
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <label className="block text-sm font-medium text-gray-400 mb-3">
-                  <Calendar className="inline w-4 h-4 mr-2 text-orange-400" />
-                  Дата возврата
-                </label>
-                <input
-                  type="date"
-                  value={endDate}
-                  onChange={(e) => setEndDate(e.target.value)}
-                  className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-white transition-all duration-300 placeholder-gray-500"
-                />
-              </motion.div>
+              <CustomDatePicker
+                value={endDate}
+                onChange={setEndDate}
+                label="Дата возврата"
+                minDate={startDate ? new Date(startDate) : new Date()}
+              />
 
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <label className="block text-sm font-medium text-gray-400 mb-3">
-                  <MapPin className="inline w-4 h-4 mr-2 text-orange-400" />
-                  Место получения
-                </label>
-                <select className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-white transition-all duration-300">
-                  <option>Аэропорт Пхукета</option>
-                  <option>Патонг</option>
-                  <option>Карон</option>
-                  <option>Ката</option>
-                  <option>Камала</option>
-                  <option>Раваи</option>
-                </select>
-              </motion.div>
+              <CustomLocationSelector
+                value={pickupLocation}
+                onChange={setPickupLocation}
+                label="Место получения"
+                locations={locations}
+              />
 
               <div className="flex items-end">
                 <Button 

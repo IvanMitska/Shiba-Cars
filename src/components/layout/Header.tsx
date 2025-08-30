@@ -37,6 +37,7 @@ export const Header: React.FC = () => {
   const navLinks = [
     { to: '/', label: 'Главная' },
     { to: '/cars', label: 'Автомобили' },
+    { to: '/motorcycles', label: 'Мотоциклы' },
     { to: '/about', label: 'О компании' },
     { to: '/terms', label: 'Условия' },
     { to: '/contacts', label: 'Контакты' },
@@ -104,7 +105,7 @@ export const Header: React.FC = () => {
 
             <div className="flex items-center gap-2 px-4 py-2 glass-effect-light rounded-xl">
               <Phone className="w-4 h-4 text-orange-500" />
-              <span className="font-semibold text-white text-sm">+7 (495) 123-45-67</span>
+              <span className="font-semibold text-white text-sm">+66 95-965-7805</span>
             </div>
             
             <Button 
@@ -126,8 +127,6 @@ export const Header: React.FC = () => {
               <Menu className="w-6 h-6 text-white" />
             )}
           </button>
-        </div>
-
         </div>
         
         <AnimatePresence mode="wait">
@@ -173,7 +172,7 @@ export const Header: React.FC = () => {
                   
                   <div className="flex items-center gap-3 text-gray-100 font-medium py-2">
                     <Phone className="w-4 h-4 text-orange-500" />
-                    <span>+7 (495) 123-45-67</span>
+                    <span>+66 95-965-7805</span>
                   </div>
                   
                   <Button 
@@ -190,6 +189,7 @@ export const Header: React.FC = () => {
             </motion.div>
           )}
         </AnimatePresence>
+      </div>
     </header>
   );
 };

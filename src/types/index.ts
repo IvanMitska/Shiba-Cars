@@ -3,7 +3,7 @@ export interface Car {
   brand: string;
   model: string;
   year: number;
-  category: 'economy' | 'comfort' | 'business' | 'premium' | 'suv' | 'sport';
+  category: 'economy' | 'comfort' | 'business' | 'premium' | 'suv' | 'sport' | 'electric';
   pricePerDay: number;
   image: string;
   images: string[];
@@ -75,4 +75,29 @@ export interface Review {
   rating: number;
   comment: string;
   date: string;
+}
+
+export interface Motorcycle {
+  id: string;
+  brand: string;
+  model: string;
+  year: number;
+  category: 'scooter' | 'sport' | 'touring' | 'cruiser' | 'adventure';
+  pricePerDay: number;
+  image: string;
+  images: string[];
+  features: string[];
+  transmission: 'manual' | 'automatic';
+  fuel: 'petrol' | 'electric';
+  engineSize: string;
+  available: boolean;
+  rating: number;
+  reviews: number;
+  description: string;
+  specifications: {
+    engine: string;
+    power: string;
+    topSpeed: string;
+    fuelTank: string;
+  };
 }

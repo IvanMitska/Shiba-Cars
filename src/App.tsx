@@ -3,6 +3,7 @@ import { Layout } from './components/layout/Layout';
 import { HomePage } from './pages/HomePage';
 import { CarsPage } from './pages/CarsPage';
 import { CarDetailsPage } from './pages/CarDetailsPage';
+import { MotorcyclesPage } from './pages/MotorcyclesPage';
 import { BookingPage } from './pages/BookingPage';
 import { AboutPage } from './pages/AboutPage';
 import { ContactsPage } from './pages/ContactsPage';
@@ -16,6 +17,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="cars" element={<CarsPage />} />
           <Route path="cars/:id" element={<CarDetailsPage />} />
+          <Route path="motorcycles" element={<MotorcyclesPage />} />
           <Route path="booking" element={<BookingPage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="contacts" element={<ContactsPage />} />
